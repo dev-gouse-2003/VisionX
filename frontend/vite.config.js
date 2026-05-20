@@ -4,8 +4,8 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages serves from /VisionX/ subfolder
-  base: process.env.NODE_ENV === 'production' ? '/VisionX/' : '/',
+  // GitHub Pages: repo name is VisionX so base must be /VisionX/
+  base: '/VisionX/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

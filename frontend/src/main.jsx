@@ -12,10 +12,13 @@ import 'regenerator-runtime/runtime'
 const savedTheme = localStorage.getItem('theme') || 'dark'
 document.documentElement.classList.toggle('dark', savedTheme === 'dark')
 
+// Use /VisionX/ as basename on GitHub Pages, / locally
+const basename = import.meta.env.BASE_URL || '/'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <App />
         <Toaster
           position="top-right"
