@@ -4,9 +4,10 @@ from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'civicpulse-ai-dev-secret-key-2026-not-for-production'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+# ── Security ──────────────────────────────────────────────────
+SECRET_KEY = os.environ.get('SECRET_KEY', 'civicpulse-ai-dev-secret-key-2026-not-for-production')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,13 +63,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'civicpulse.wsgi.application'
 
-# SQLite — works without any setup
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'civicpulse.db',
+# ── Database ──────────────────────────────────────────────────
+# Uses PostgreSQL on Render (DATABASE_URL set automatically)
+# Falls back to SQLite for local development
+DATABASE_URL = os.environ.get('DATABASE_URL', '')
+
+if DATABASE_URL:
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'civicpulse.db',
+        }
+    }
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -81,6 +92,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# ── Static & Media ────────────────────────────────────────────
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -90,6 +102,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ── REST Framework ────────────────────────────────────────────
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -107,6 +120,7 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+# ── JWT ───────────────────────────────────────────────────────
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
@@ -115,9 +129,16 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+# ── CORS ──────────────────────────────────────────────────────
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://dev-gouse-2003.github.io",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
+# ── API Docs ──────────────────────────────────────────────────
 SPECTACULAR_SETTINGS = {
     'TITLE': 'CivicPulse AI API',
     'DESCRIPTION': 'AI-Powered Public Service Delivery & Governance Intelligence Platform',
@@ -132,7 +153,6 @@ AI_MODEL_PATH = str(BASE_DIR / 'ai_models')
 SPAM_SIMILARITY_THRESHOLD = 0.85
 CLASSIFICATION_THRESHOLD = 0.7
 
-# Email (console backend for dev)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SECURE_BROWSER_XSS_FILTER = True
