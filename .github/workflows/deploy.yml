@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   deploy:
@@ -22,21 +20,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: VisionX/frontend/package-lock.json
 
       - name: Install dependencies
         working-directory: VisionX/frontend
-        run: npm install
+        run: npm install --legacy-peer-deps
+
+      - name: Create production env file
+        working-directory: VisionX/frontend
+        run: |
+          echo "VITE_APP_NAME=CivicPulse AI" > .env.production
+          echo "VITE_APP_VERSION=1.0.0" >> .env.production
+          if [ -n "${{ secrets.VITE_API_BASE_URL }}" ]; then
+            echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" >> .env.production
+          else
+            echo "VITE_API_BASE_URL=https://visionx-api.onrender.com/api" >> .env.production
+          fi
 
       - name: Build frontend
         working-directory: VisionX/frontend
         env:
           NODE_ENV: production
-          # Replace this with your actual Render backend URL after deploying
-          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
-          VITE_APP_NAME: CivicPulse AI
-          VITE_APP_VERSION: 1.0.0
         run: npm run build
 
       - name: Deploy to GitHub Pages
@@ -45,3 +48,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: VisionX/frontend/dist
           publish_branch: gh-pages
+          force_orphan: true
