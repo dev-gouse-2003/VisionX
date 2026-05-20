@@ -1,0 +1,162 @@
+[
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111101",
+    "fields": {
+      "name": "Water Supply Department",
+      "code": "WATER",
+      "description": "Manages water supply, pipelines, and drainage systems",
+      "icon": "droplets",
+      "color": "#3B82F6",
+      "sla_hours": 48,
+      "is_active": true,
+      "total_complaints": 145,
+      "resolved_complaints": 112,
+      "pending_complaints": 33,
+      "avg_resolution_time": 38.5,
+      "performance_score": 78.2,
+      "citizen_satisfaction": 3.8,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111102",
+    "fields": {
+      "name": "Roads & Infrastructure",
+      "code": "ROADS",
+      "description": "Manages roads, bridges, and public infrastructure",
+      "icon": "road",
+      "color": "#F59E0B",
+      "sla_hours": 72,
+      "is_active": true,
+      "total_complaints": 203,
+      "resolved_complaints": 145,
+      "pending_complaints": 58,
+      "avg_resolution_time": 65.2,
+      "performance_score": 71.5,
+      "citizen_satisfaction": 3.4,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111103",
+    "fields": {
+      "name": "Electricity Department",
+      "code": "ELEC",
+      "description": "Manages power supply, streetlights, and electrical infrastructure",
+      "icon": "zap",
+      "color": "#EAB308",
+      "sla_hours": 24,
+      "is_active": true,
+      "total_complaints": 178,
+      "resolved_complaints": 156,
+      "pending_complaints": 22,
+      "avg_resolution_time": 18.3,
+      "performance_score": 88.4,
+      "citizen_satisfaction": 4.1,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111104",
+    "fields": {
+      "name": "Healthcare Department",
+      "code": "HEALTH",
+      "description": "Manages public health services, hospitals, and medical facilities",
+      "icon": "heart-pulse",
+      "color": "#EF4444",
+      "sla_hours": 12,
+      "is_active": true,
+      "total_complaints": 89,
+      "resolved_complaints": 78,
+      "pending_complaints": 11,
+      "avg_resolution_time": 9.8,
+      "performance_score": 91.2,
+      "citizen_satisfaction": 4.3,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111105",
+    "fields": {
+      "name": "Sanitation & Waste Management",
+      "code": "SANIT",
+      "description": "Manages garbage collection, waste disposal, and sanitation",
+      "icon": "trash-2",
+      "color": "#10B981",
+      "sla_hours": 48,
+      "is_active": true,
+      "total_complaints": 167,
+      "resolved_complaints": 134,
+      "pending_complaints": 33,
+      "avg_resolution_time": 42.1,
+      "performance_score": 80.2,
+      "citizen_satisfaction": 3.6,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111106",
+    "fields": {
+      "name": "Public Transport",
+      "code": "TRANS",
+      "description": "Manages buses, metro, and public transportation services",
+      "icon": "bus",
+      "color": "#8B5CF6",
+      "sla_hours": 72,
+      "is_active": true,
+      "total_complaints": 112,
+      "resolved_complaints": 87,
+      "pending_complaints": 25,
+      "avg_resolution_time": 55.6,
+      "performance_score": 77.7,
+      "citizen_satisfaction": 3.5,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111107",
+    "fields": {
+      "name": "Emergency Services",
+      "code": "EMERG",
+      "description": "Handles emergency complaints and crisis management",
+      "icon": "siren",
+      "color": "#DC2626",
+      "sla_hours": 4,
+      "is_active": true,
+      "total_complaints": 34,
+      "resolved_complaints": 32,
+      "pending_complaints": 2,
+      "avg_resolution_time": 3.2,
+      "performance_score": 95.8,
+      "citizen_satisfaction": 4.6,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "departments.department",
+    "pk": "11111111-1111-1111-1111-111111111108",
+    "fields": {
+      "name": "Public Safety",
+      "code": "SAFETY",
+      "description": "Manages public safety, crime prevention, and security",
+      "icon": "shield",
+      "color": "#6366F1",
+      "sla_hours": 24,
+      "is_active": true,
+      "total_complaints": 76,
+      "resolved_complaints": 65,
+      "pending_complaints": 11,
+      "avg_resolution_time": 20.4,
+      "performance_score": 85.5,
+      "citizen_satisfaction": 4.0,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]
