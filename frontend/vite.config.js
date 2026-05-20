@@ -4,6 +4,8 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  // GitHub Pages serves from /VisionX/ subfolder
+  base: process.env.NODE_ENV === 'production' ? '/VisionX/' : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -11,6 +13,7 @@ export default defineConfig({
   },
   build: {
     chunkSizeWarningLimit: 1500,
+    outDir: 'dist',
   },
   server: {
     port: 3000,
